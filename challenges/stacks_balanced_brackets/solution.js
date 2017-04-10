@@ -27,7 +27,6 @@ function main() {
     var parens = expression.replace(/[^\[\]{}()]/g, "");
     parens = parens.split("");
     var opens = [];
-    var close = [];
     for (var i = 0; i < parens.length; i++) {
       if (["[","{","("].includes(parens[i])) {
         opens.push(parens[i]);
@@ -36,11 +35,12 @@ function main() {
         if (["[]","{}","()"].includes( opens[length-1] + parens[i] )) {
           opens.pop();
         } else {
-          close.push(parens[i]);
+          console.log('NO');
+          return;
         }
       }
     }
-    if ((opens.length > 0) || (close.length > 0)) {
+    if (opens.length > 0) {
       console.log('NO');
     } else {
       console.log('YES');
